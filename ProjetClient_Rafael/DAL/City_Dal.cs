@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ProjetClient_Rafael.BL;
 using System.Data;
+
 
 namespace ProjetClient_Rafael.DAL
 {
-    public class Dal_Client
+    public class City_DAL
     {
-        public static bool Insert(string firstName, string lastName, int
-        phoneNum, int teoudateZeoute, string postalcode, int age)
-        { 
+        public static bool Insert(string cityname)
+        {
 
             //מוסיפה את הלקוח למסד הנתונים
             //בניית הוראת ה-SQL
 
-            string str = "INSERT INTO Table_Client"
+            string str = "INSERT INTO Table_City"
+
             + "("
-            + "[FirstName],[LastName],[PhoneNum],[TeoudateZeoute],[PostalCode],[Age]"
+             + "[Name]"
             + ")"
             + " VALUES "
             + "("
-            + $" '{firstName}' , '{lastName}' , '{phoneNum}' , '{teoudateZeoute}' ,'{postalcode}','{age}'"
+            + "'" + cityname + "'"
             + ")";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
@@ -34,38 +34,30 @@ namespace ProjetClient_Rafael.DAL
             DataTable dataTable = null;
             DataSet dataSet = new DataSet();
             FillDataSet(dataSet);
-            dataTable = dataSet.Tables["Table_Client"];
+            dataTable = dataSet.Tables["Table_City"];
             return dataTable;
         }
+
         public static void FillDataSet(DataSet dataSet)
         {
-
             //ממלאת את אוסף הטבלאות בטבלת הלקוחות
-            Dal.FillDataSet(dataSet, "Table_Client", "[LastName],[FirstName],[PhoneNum],[TeoudateZeoute],[PostalCode],[Age]");
+            Dal.FillDataSet(dataSet, "Table_City", "[Name]");
             //בהמשך יהיו כאן הוראות נוספות הקשורות לקשרי גומלין...
 
         }
 
-        public static bool Update(int ID, string firstName, string lastName, int
-        phoneNum, int teoudateZeoute, string postalcode, int age)
+        public static bool Update(int id, string cityname)
         {
 
             //מעדכנת את הלקוח במסד הנתונים
 
-            string str = "UPDATE Table_Client SET"
-            + $"[FirstName] = '{firstName}'"
-            + $" ,[LastName] = '{lastName}'"
-            + $" ,[PhoneNum] = '{phoneNum}'"
-            + $" ,[TeoudateZeoute]='{teoudateZeoute}'"
-            + $" ,[PostalCode] = '{postalcode}'"
-            + $" ,[Age] = '{age}'"
+            string str = "UPDATE Table_City SET"
+            + " " + "[Name] = " + "'" + cityname + "'"
+            + " WHERE ID = " + id;
 
-            + $" WHERE ID = {ID}";
-            return Dal.ExecuteSql(str);
-  
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
 
-            
+            return Dal.ExecuteSql(str);
         }
 
         public static bool Delete(int id)
@@ -73,14 +65,11 @@ namespace ProjetClient_Rafael.DAL
 
             //מוחקת את הלקוח ממסד הנתונים
 
-            string str = $"DELETE FROM Table_Client WHERE ID = {id}";
+            string str = "DELETE FROM Table_City"
+            + " WHERE ID = " + id;
+
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
         }
-
-
-
-
     }
 }
-
