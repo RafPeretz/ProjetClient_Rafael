@@ -10,20 +10,19 @@ namespace ProjetClient_Rafael.DAL
 {
     public class Dal_Client
     {
-        public static bool Insert(string firstName, string lastName, int
-        phoneNum, int teoudateZeoute, string postalcode, int age)
-        { 
+        public static bool Insert(string firstName, string lastName, int phoneNum, int teoudateZeoute, string postalcode, int age, int city)
+        {
 
             //מוסיפה את הלקוח למסד הנתונים
             //בניית הוראת ה-SQL
 
             string str = "INSERT INTO Table_Client"
             + "("
-            + "[FirstName],[LastName],[PhoneNum],[TeoudateZeoute],[PostalCode],[Age]"
+            + "[FirstName], [LastName], [PhoneNum], [TeoudateZeoute], [PostalCode], [Age], [City]"
             + ")"
             + " VALUES "
             + "("
-            + $" '{firstName}' , '{lastName}' , '{phoneNum}' , '{teoudateZeoute}' ,'{postalcode}','{age}'"
+            + $" '{firstName}' , '{lastName}' , '{phoneNum}' , '{teoudateZeoute}' , '{postalcode}', '{age}', '{city}'"
             + ")";
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
             return Dal.ExecuteSql(str);
@@ -37,17 +36,38 @@ namespace ProjetClient_Rafael.DAL
             dataTable = dataSet.Tables["Table_Client"];
             return dataTable;
         }
+
         public static void FillDataSet(DataSet dataSet)
         {
 
             //ממלאת את אוסף הטבלאות בטבלת הלקוחות
-            Dal.FillDataSet(dataSet, "Table_Client", "[LastName],[FirstName],[PhoneNum],[TeoudateZeoute],[PostalCode],[Age]");
-            //בהמשך יהיו כאן הוראות נוספות הקשורות לקשרי גומלין...
+            Dal.FillDataSet(dataSet, "Table_Client", "[LastName],[FirstName]");
+            City_DAL.FillDataSet(dataSet);
+            DataRelation dataRelation = null;
+            dataRelation = new DataRelation(
+
+            //שם קשר הגומלין
+
+            "ClientCity"
+
+            //עמודת הקשר בטבלת האב )המפתח הראשי של טבלת האב(
+
+            , dataSet.Tables["Table_City"].Columns["ID"]
+
+            //עמודת הקשר בטבלת הבן )המפתח הזר בטבלת הבן(
+
+            , dataSet.Tables["Table_Client"].Columns["City"]);
+
+            //הוספת קשר הגומלין לאוסף הטבלאות
+
+            dataSet.Relations.Add(dataRelation);
+
+
 
         }
 
-        public static bool Update(int ID, string firstName, string lastName, int
-        phoneNum, int teoudateZeoute, string postalcode, int age)
+
+        public static bool Update(int ID, string firstName, string lastName, int phoneNum, int teoudateZeoute, string postalcode, int age, int city)
         {
 
             //מעדכנת את הלקוח במסד הנתונים
@@ -59,13 +79,14 @@ namespace ProjetClient_Rafael.DAL
             + $" ,[TeoudateZeoute]='{teoudateZeoute}'"
             + $" ,[PostalCode] = '{postalcode}'"
             + $" ,[Age] = '{age}'"
+            + $" ,[City] = '{city}'"
 
             + $" WHERE ID = {ID}";
             return Dal.ExecuteSql(str);
-  
+
             //הפעלת פעולת הSQL -תוך שימוש בפעולה המוכנה ExecuteSql במחלקה Dal והחזרה האם הפעולה הצליחה
 
-            
+
         }
 
         public static bool Delete(int id)

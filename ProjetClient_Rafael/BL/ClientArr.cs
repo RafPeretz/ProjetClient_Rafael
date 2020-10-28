@@ -62,6 +62,16 @@ namespace ProjetClient_Rafael.BL
             }
             return clientArr;
         }
+
+
+        public bool DoesExist(City curCity)
+        {
+            for (int i = 0; i < this.Count; i++)
+                if ((this[i] as Client).City.ID == curCity.ID)
+                    return true;
+
+            return false;
+        }
     }
 
 }

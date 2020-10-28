@@ -126,6 +126,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form_City";
             this.Text = "Form_City";
+            this.Load += new System.EventHandler(this.Form_City_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

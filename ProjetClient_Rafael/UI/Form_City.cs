@@ -167,28 +167,40 @@ namespace ProjetClient_Rafael.UI
         private void button_deleteCity_Click(object sender, EventArgs e)
         {
             City city = FormToCity();
-
             if (city.ID == 0)
-            {
-                MessageBox.Show("There is no selected city");
-            }
-
-
+                MessageBox.Show("You must select a city");
             else
             {
-                if (MessageBox.Show("Are sur you want to delete this city", "Warning",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show("Warning", "Are you sure you want to delete?", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2, MessageBoxOptions.RightAlign |
+                MessageBoxOptions.RtlReading) == DialogResult.Yes)
                 {
-                    city.Delete();
-                    CityToForm(null);
-                    CityArrToForm();
+
+                    //לפני המחיקה - בדיקה שהישוב לא בשימוש בישויות אחרות
+                    //בדיקה עבור לקוחות
+
+                    ClientArr clientArr = new ClientArr();
+                    clientArr.Fill();
+                    if (clientArr.DoesExist(city))
+                        MessageBox.Show("You can’t delete a city that is related to a client");
+                    else
+                    if (city.Delete())
+                    {
+                        MessageBox.Show("Deleted");
+                        CityToForm(null);
+                        CityArrToForm();
+                    }
+                    else
+                        MessageBox.Show("Error");
                 }
             }
-
-
         }
 
+    
+        private void Form_City_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 

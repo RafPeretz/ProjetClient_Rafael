@@ -26,8 +26,8 @@ namespace ProjetClient_Rafael.BL
         public City(DataRow dataRow)
         {
             //מייצרת לקוח מתוך שורת לקוח
-            this.ID = (int)dataRow["ID"];
-            this.m_cityName = dataRow["Name"].ToString();
+            m_id = (int)dataRow["ID"];
+            m_cityName = dataRow["Name"].ToString();
         }
 
         public bool Insert()

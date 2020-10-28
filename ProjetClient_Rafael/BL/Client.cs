@@ -19,6 +19,7 @@ namespace ProjetClient_Rafael.BL
         private string m_PostalCode;
         private int m_Age;
         private int m_ID;
+        private City m_city;
 
         public string FirstName { get => m_FirstName; set => m_FirstName = value; }
         public string LastName { get => m_LastName; set => m_LastName = value; }
@@ -27,13 +28,14 @@ namespace ProjetClient_Rafael.BL
         public string PostalCode { get => m_PostalCode; set => m_PostalCode = value; }
         public int Age { get => m_Age; set => m_Age = value; }
         public int ID { get => m_ID; set => m_ID = value; }
+        public City City { get => m_city; set => m_city = value; }
 
         public void SetM_FirstName(string m_FirstName) { this.FirstName = m_FirstName; }
 
 
         public bool Insert()
         {
-            return Dal_Client.Insert( FirstName, LastName, PhoneNum, TeoudateZeoute, PostalCode, Age);
+            return Dal_Client.Insert(FirstName, LastName, PhoneNum, TeoudateZeoute, PostalCode, Age, m_city.ID);
         }
 
         public Client() { }
@@ -45,12 +47,13 @@ namespace ProjetClient_Rafael.BL
 
             m_ID = (int)dataRow["ID"];
             m_FirstName = dataRow["FirstName"].ToString();
-            m_LastName = dataRow["LastName"].ToString();   
+            m_LastName = dataRow["LastName"].ToString();
             m_PhoneNum = (int)dataRow["PhoneNum"];
             m_TeoudateZeoute = (int)dataRow["TeoudateZeoute"];
-           m_PostalCode = dataRow["PostalCode"].ToString();
+            m_PostalCode = dataRow["PostalCode"].ToString();
             m_Age = (int)dataRow["Age"];
-            
+            m_city = new City(dataRow.GetParentRow("ClientCity"));
+
 
         }
         public override string ToString()
@@ -61,7 +64,7 @@ namespace ProjetClient_Rafael.BL
 
         public bool Update()
         {
-            return Dal_Client.Update(ID, FirstName, LastName, PhoneNum, TeoudateZeoute, PostalCode, Age);
+            return Dal_Client.Update(ID, FirstName, LastName, PhoneNum, TeoudateZeoute, PostalCode, Age, m_city.ID);
 
         }
 

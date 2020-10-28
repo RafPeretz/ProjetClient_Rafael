@@ -53,6 +53,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
+            this.label_city = new System.Windows.Forms.Label();
+            this.comboBox_city = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -165,7 +167,7 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(67, 585);
+            this.buttonSave.Location = new System.Drawing.Point(80, 658);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(184, 114);
             this.buttonSave.TabIndex = 12;
@@ -177,9 +179,9 @@
             // 
             this.listBox_Client.FormattingEnabled = true;
             this.listBox_Client.ItemHeight = 25;
-            this.listBox_Client.Location = new System.Drawing.Point(624, 305);
+            this.listBox_Client.Location = new System.Drawing.Point(644, 306);
             this.listBox_Client.Name = "listBox_Client";
-            this.listBox_Client.Size = new System.Drawing.Size(929, 479);
+            this.listBox_Client.Size = new System.Drawing.Size(954, 479);
             this.listBox_Client.TabIndex = 13;
             this.listBox_Client.DoubleClick += new System.EventHandler(this.listBox_Client_DoubleClick);
             // 
@@ -206,7 +208,7 @@
             // button_Delete
             // 
             this.button_Delete.BackColor = System.Drawing.Color.Red;
-            this.button_Delete.Location = new System.Drawing.Point(302, 585);
+            this.button_Delete.Location = new System.Drawing.Point(320, 649);
             this.button_Delete.Name = "button_Delete";
             this.button_Delete.Size = new System.Drawing.Size(182, 114);
             this.button_Delete.TabIndex = 16;
@@ -224,7 +226,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(644, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(929, 271);
+            this.groupBox1.Size = new System.Drawing.Size(954, 271);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filter";
@@ -295,11 +297,32 @@
             this.textBoxFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Let_KeyPress);
             this.textBoxFirstName.Leave += new System.EventHandler(this.textBox_Name_Leave);
             // 
+            // label_city
+            // 
+            this.label_city.AutoSize = true;
+            this.label_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label_city.Location = new System.Drawing.Point(13, 513);
+            this.label_city.Name = "label_city";
+            this.label_city.Size = new System.Drawing.Size(66, 31);
+            this.label_city.TabIndex = 18;
+            this.label_city.Text = "City";
+            // 
+            // comboBox_city
+            // 
+            this.comboBox_city.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.comboBox_city.FormattingEnabled = true;
+            this.comboBox_city.Location = new System.Drawing.Point(119, 510);
+            this.comboBox_city.Name = "comboBox_city";
+            this.comboBox_city.Size = new System.Drawing.Size(230, 39);
+            this.comboBox_city.TabIndex = 19;
+            // 
             // Form_Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1578, 837);
+            this.ClientSize = new System.Drawing.Size(1945, 942);
+            this.Controls.Add(this.comboBox_city);
+            this.Controls.Add(this.label_city);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_Delete);
             this.Controls.Add(this.label_ID);
@@ -354,6 +377,8 @@
         private System.Windows.Forms.TextBox textBox_FilterLastName;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TextBox textBoxFirstName;
+        private System.Windows.Forms.Label label_city;
+        private System.Windows.Forms.ComboBox comboBox_city;
     }
 }
 

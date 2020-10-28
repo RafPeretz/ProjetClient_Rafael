@@ -20,15 +20,9 @@ namespace ProjetClient_Rafael
         {
             InitializeComponent();
             ClientArrToForm();
-            CapsLockChek();
-            Form_Client_InputLanguageChanged(null, null);
-  
-
+          //Form_Client_InputLanguageChanged(null, null);
+            CityArrToForm();
         }
-
-
-
-
 
         private bool IsEnglishLetter(char c)
         {
@@ -40,7 +34,6 @@ namespace ProjetClient_Rafael
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
         }
-
 
         private void textBox_Let_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -56,7 +49,7 @@ namespace ProjetClient_Rafael
         private void Form_Client_InputLanguageChanged(object sender, InputLanguageChangedEventArgs e)
         {
             InputLanguage myCurrentLang = InputLanguage.CurrentInputLanguage;
-            if (myCurrentLang.Culture.Name.ToLower() != "en-us"|| myCurrentLang.Culture.Name.ToLower() !="en-uk")
+            if (myCurrentLang.Culture.Name.ToLower() != "en-us" || myCurrentLang.Culture.Name.ToLower() != "en-uk")
                 MessageBox.Show("Language not english");
 
 
@@ -65,7 +58,7 @@ namespace ProjetClient_Rafael
         private void textBox_Name_Leave(object sender, EventArgs e)
         {
 
-        } 
+        }
 
 
         private bool CheckForm()
@@ -87,7 +80,7 @@ namespace ProjetClient_Rafael
                 }
                 else
                     textBoxFirstName.BackColor = Color.White;
-           
+
             }
 
 
@@ -129,7 +122,7 @@ namespace ProjetClient_Rafael
                     textBoxPhoneNum.BackColor = Color.White;
             }
 
-         
+
 
             //age
             if (textBoxAge.Text.Length != 0)
@@ -143,14 +136,20 @@ namespace ProjetClient_Rafael
                     textBoxAge.BackColor = Color.White;
             }
 
-            
+            //city 
+            if (comboBox_city.Text.Length != 0)
+            {
 
+                if (comboBox_city.Text.Length < 2)
+                {
+                    flag = false;
+                    comboBox_city.BackColor = Color.Red;
+                }
+
+            }
 
             return flag;
         }
-
-
-
 
         private void button_Save_Click(object sender, EventArgs e)
 
@@ -160,10 +159,10 @@ namespace ProjetClient_Rafael
                 MessageBox.Show("Fill all the mandatory fields!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             else
-            {           
-                
+            {
+
                 Client client = FormToClient();
-                
+
                 if (client.ID == 0)
                 {
                     if (client.Insert())
@@ -173,7 +172,7 @@ namespace ProjetClient_Rafael
                     }
 
                     else
-                            MessageBox.Show("Couldn't add the client", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Couldn't add the client", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
                 else
@@ -187,13 +186,12 @@ namespace ProjetClient_Rafael
                         MessageBox.Show("Couldn't update the client", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                
+
 
             }
 
 
         }
-
 
         private Client FormToClient()
         {
@@ -202,16 +200,11 @@ namespace ProjetClient_Rafael
             client.ID = int.Parse(label_ID.Text);
             client.FirstName = textBoxFirstName.Text;
             client.LastName = textBoxLastName.Text;
-            
-
             client.PostalCode = textBoxPostalCode.Text;
-           
+            client.City = (comboBox_city.SelectedItem as City);
 
             return client;
         }
-
-
-
 
         private void ClientArrToForm()
         {
@@ -236,6 +229,7 @@ namespace ProjetClient_Rafael
                 textBox_TeoudateZeoute.Text = client.TeoudateZeoute.ToString();
                 textBoxPostalCode.Text = client.PostalCode;
                 textBoxAge.Text = client.Age.ToString();
+                comboBox_city.SelectedValue = client.City.ID;
             }
 
             else
@@ -275,10 +269,9 @@ namespace ProjetClient_Rafael
             else
             {
                 if (MessageBox.Show("Are sur you want to delete this client", "Warning",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) ==System.Windows.Forms.DialogResult.Yes)
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    client.Delete();
-                    ClientToForm(null);
+                    ;
                     ClientArrToForm();
                 }
             }
@@ -311,5 +304,18 @@ namespace ProjetClient_Rafael
 
             listBox_Client.DataSource = clientArr;
         }
+
+        public void CityArrToForm()
+        {
+
+            //ממירה את הטנ "מ אוסף ישובים לטופס
+
+            CityArr cityArr = new CityArr();
+            cityArr.Fill();
+
+            comboBox_city.DataSource = cityArr;
+            comboBox_city.ValueMember = "Id";
+            comboBox_city.DisplayMember = "CityName";
+        } 
     }
 }
