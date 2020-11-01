@@ -78,11 +78,12 @@
             // 
             // listBox_City
             // 
+            this.listBox_City.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.listBox_City.FormattingEnabled = true;
-            this.listBox_City.ItemHeight = 25;
+            this.listBox_City.ItemHeight = 31;
             this.listBox_City.Location = new System.Drawing.Point(673, 149);
             this.listBox_City.Name = "listBox_City";
-            this.listBox_City.Size = new System.Drawing.Size(592, 754);
+            this.listBox_City.Size = new System.Drawing.Size(592, 748);
             this.listBox_City.TabIndex = 4;
             this.listBox_City.DoubleClick += new System.EventHandler(this.listBox_City_DoubleClick);
             // 

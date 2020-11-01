@@ -22,14 +22,26 @@ namespace ProjetClient_Rafael.UI
 
     public partial class Form_City : Form
     {
-        public Form_City()
+        public Form_City(City city = null)
         {
             InitializeComponent();
-            CityArrToForm();
-            CapsLockChek();
-            
+
+            //אם נשלח ישוב שאינו ישוב אמיתי )נדבר על זה בהמשך( - לאפס אותו
+
+            if (city != null && city.ID <= 0)
+                city = null;
+
+            //טעינת אוסף הישובים לרשימה בטופס
+
+            CityArrToForm(city);
+            CityToForm(city);
         }
 
+
+        public City SelectedCity
+        {
+            get { return (listBox_City.SelectedItem as City); }
+        }
 
         public bool CheckForm()
         {
@@ -46,13 +58,19 @@ namespace ProjetClient_Rafael.UI
 
         private bool IsEnglishLetter(char c)
         {
-            return (c >= 'a' && c <= 'z');
+            return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
         }
 
         private void textBox_Let_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!IsEnglishLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            if (!IsEnglishLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
                 e.KeyChar = char.MinValue;
+            if (CapsLockChek())
+            {
+                MessageBox.Show("CapsLock is locked");
+                e.KeyChar = char.MinValue;
+
+            }
         }
 
         private bool CapsLockChek()
@@ -90,7 +108,10 @@ namespace ProjetClient_Rafael.UI
                         if (city.Insert())
                         {
                             MessageBox.Show("Thank you for you registration!");
-                            CityArrToForm();
+                            CityArr cityArr = new CityArr();
+                            cityArr.Fill();
+                            city = cityArr.GetCityWithMaxId();
+                            CityArrToForm(city);
                         }
 
                         else
@@ -107,7 +128,7 @@ namespace ProjetClient_Rafael.UI
                     if (city.Update())
                     {
                         MessageBox.Show("Update succesfully", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CityArrToForm();
+                        CityArrToForm(city);
                     }
 
                     else
@@ -129,14 +150,20 @@ namespace ProjetClient_Rafael.UI
             return city;
         }
 
-        private void CityArrToForm()
+        private void CityArrToForm(City curCity)
         {
 
-            //ממירה את הטנ "מ אוסף לקוחות לטופס
+            //ממירה את הטנ"מ אוסף לקוחות לטופס
+            CityArr CityArr = new CityArr();
+            CityArr.Fill();
+            listBox_City.DataSource = CityArr;
+            listBox_City.ValueMember = "ID";
+            listBox_City.DisplayMember = "CityName";
 
-            CityArr cityArr = new CityArr();
-            cityArr.Fill();
-            listBox_City.DataSource = cityArr;
+            //אם נשלח לפעולה ישוב ,הצבתו בתיבת הבחירה של ישובים בטופס
+
+            if (curCity != null)
+                listBox_City.SelectedValue = curCity.ID;
 
         }
 
@@ -151,14 +178,14 @@ namespace ProjetClient_Rafael.UI
 
             else
             {
-                label_ID.Text = "0";            
+                label_ID.Text = "0";
                 textBox_cityname.Text = "";
 
             }
 
         }
 
-      
+
         private void listBox_City_DoubleClick(object sender, EventArgs e)
         {
             CityToForm(listBox_City.SelectedItem as City);
@@ -188,7 +215,7 @@ namespace ProjetClient_Rafael.UI
                     {
                         MessageBox.Show("Deleted");
                         CityToForm(null);
-                        CityArrToForm();
+                        CityArrToForm(city);
                     }
                     else
                         MessageBox.Show("Error");
@@ -196,7 +223,7 @@ namespace ProjetClient_Rafael.UI
             }
         }
 
-    
+
         private void Form_City_Load(object sender, EventArgs e)
         {
 

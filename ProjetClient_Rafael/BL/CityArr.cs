@@ -52,7 +52,18 @@ namespace ProjetClient_Rafael.BL
         }
 
 
+        public City GetCityWithMaxId()
+        {
 
+            //מחזירה את הישוב עם המזהה הגבוה ביותר
+
+            City maxCity = new City();
+            for (int i = 0; i < this.Count; i++)
+                if ((this[i] as City).ID > maxCity.ID)
+                    maxCity = this[i] as City;
+
+            return maxCity;
+        }
     }
 
 }

@@ -12,7 +12,7 @@ using ProjetClient_Rafael.DAL;
 
 
 
-namespace ProjetClient_Rafael
+namespace ProjetClient_Rafael.UI
 {
     public partial class Form_Client : Form
     {
@@ -20,26 +20,32 @@ namespace ProjetClient_Rafael
         {
             InitializeComponent();
             ClientArrToForm();
-          //Form_Client_InputLanguageChanged(null, null);
+            //Form_Client_InputLanguageChanged(null, null);
             CityArrToForm();
         }
 
         private bool IsEnglishLetter(char c)
         {
-            return (c >= 'a' && c <= 'z');
+            return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
         }
 
         private void textBox_Number_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
                 e.KeyChar = char.MinValue;
-        }
+        } // verification pour les chiffre 
 
         private void textBox_Let_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!IsEnglishLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            if (!IsEnglishLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
                 e.KeyChar = char.MinValue;
-        }
+            if (CapsLockChek())
+            {
+                MessageBox.Show("CapsLock is locked");
+                e.KeyChar = char.MinValue;
+
+            }
+        } // verification pour les lettre
 
         private bool CapsLockChek()
         {
@@ -271,7 +277,7 @@ namespace ProjetClient_Rafael
                 if (MessageBox.Show("Are sur you want to delete this client", "Warning",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    ;
+                    client.Delete();
                     ClientArrToForm();
                 }
             }
@@ -305,9 +311,10 @@ namespace ProjetClient_Rafael
             listBox_Client.DataSource = clientArr;
         }
 
-        public void CityArrToForm()
+        public void CityArrToForm(City curCity = null)
         {
-
+            if (curCity != null)
+                comboBox_city.SelectedValue = curCity.ID;
             //ממירה את הטנ "מ אוסף ישובים לטופס
 
             CityArr cityArr = new CityArr();
@@ -316,6 +323,14 @@ namespace ProjetClient_Rafael
             comboBox_city.DataSource = cityArr;
             comboBox_city.ValueMember = "Id";
             comboBox_city.DisplayMember = "CityName";
-        } 
+        }
+
+        private void button_add_city_Click(object sender, EventArgs e)
+        {
+            Form_City form_City;
+            form_City = new Form_City();
+            form_City.ShowDialog();
+            CityArrToForm(form_City.SelectedCity);
+        }
     }
 }
