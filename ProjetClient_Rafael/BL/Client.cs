@@ -57,8 +57,9 @@ namespace ProjetClient_Rafael.BL
 
         }
         public override string ToString()
-        { return $"{m_LastName} {m_FirstName} {PostalCode} {Age} "; }
-
+        {
+            return m_FirstName + " " + m_LastName;
+        }
 
 
 

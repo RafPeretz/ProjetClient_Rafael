@@ -81,6 +81,7 @@
             // 
             // textBoxLastName
             // 
+            this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.textBoxLastName.Location = new System.Drawing.Point(189, 191);
             this.textBoxLastName.Multiline = true;
             this.textBoxLastName.Name = "textBoxLastName";
@@ -101,7 +102,8 @@
             // 
             // textBox_TeoudateZeoute
             // 
-            this.textBox_TeoudateZeoute.Location = new System.Drawing.Point(249, 258);
+            this.textBox_TeoudateZeoute.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.textBox_TeoudateZeoute.Location = new System.Drawing.Point(296, 252);
             this.textBox_TeoudateZeoute.Multiline = true;
             this.textBox_TeoudateZeoute.Name = "textBox_TeoudateZeoute";
             this.textBox_TeoudateZeoute.Size = new System.Drawing.Size(282, 31);
@@ -121,10 +123,12 @@
             // 
             // textBoxAge
             // 
-            this.textBoxAge.Location = new System.Drawing.Point(108, 446);
+            this.textBoxAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.textBoxAge.Location = new System.Drawing.Point(296, 443);
             this.textBoxAge.Name = "textBoxAge";
-            this.textBoxAge.Size = new System.Drawing.Size(423, 31);
+            this.textBoxAge.Size = new System.Drawing.Size(300, 35);
             this.textBoxAge.TabIndex = 6;
+            this.textBoxAge.TextChanged += new System.EventHandler(this.textBoxAge_TextChanged);
             this.textBoxAge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
             this.textBoxAge.Leave += new System.EventHandler(this.textBox_Name_Leave);
             // 
@@ -140,9 +144,10 @@
             // 
             // textBoxPostalCode
             // 
-            this.textBoxPostalCode.Location = new System.Drawing.Point(200, 385);
+            this.textBoxPostalCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.textBoxPostalCode.Location = new System.Drawing.Point(296, 388);
             this.textBoxPostalCode.Name = "textBoxPostalCode";
-            this.textBoxPostalCode.Size = new System.Drawing.Size(331, 31);
+            this.textBoxPostalCode.Size = new System.Drawing.Size(300, 35);
             this.textBoxPostalCode.TabIndex = 5;
             this.textBoxPostalCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
             this.textBoxPostalCode.Leave += new System.EventHandler(this.textBox_Name_Leave);
@@ -159,9 +164,10 @@
             // 
             // textBoxPhoneNum
             // 
-            this.textBoxPhoneNum.Location = new System.Drawing.Point(231, 322);
+            this.textBoxPhoneNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.textBoxPhoneNum.Location = new System.Drawing.Point(296, 322);
             this.textBoxPhoneNum.Name = "textBoxPhoneNum";
-            this.textBoxPhoneNum.Size = new System.Drawing.Size(300, 31);
+            this.textBoxPhoneNum.Size = new System.Drawing.Size(300, 35);
             this.textBoxPhoneNum.TabIndex = 4;
             this.textBoxPhoneNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Number_KeyPress);
             this.textBoxPhoneNum.Leave += new System.EventHandler(this.textBox_Name_Leave);
@@ -238,26 +244,29 @@
             // 
             // textBox_FilterId
             // 
+            this.textBox_FilterId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.textBox_FilterId.Location = new System.Drawing.Point(145, 74);
             this.textBox_FilterId.Name = "textBox_FilterId";
-            this.textBox_FilterId.Size = new System.Drawing.Size(465, 31);
+            this.textBox_FilterId.Size = new System.Drawing.Size(465, 35);
             this.textBox_FilterId.TabIndex = 5;
             this.textBox_FilterId.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // textBox_FilterLastName
             // 
+            this.textBox_FilterLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.textBox_FilterLastName.Location = new System.Drawing.Point(166, 130);
             this.textBox_FilterLastName.Name = "textBox_FilterLastName";
-            this.textBox_FilterLastName.Size = new System.Drawing.Size(453, 31);
+            this.textBox_FilterLastName.Size = new System.Drawing.Size(453, 35);
             this.textBox_FilterLastName.TabIndex = 4;
             this.textBox_FilterLastName.TextChanged += new System.EventHandler(this.textBox_FilterLastName_TextChanged);
             this.textBox_FilterLastName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
             // textBox_FilterPhoneNum
             // 
+            this.textBox_FilterPhoneNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.textBox_FilterPhoneNum.Location = new System.Drawing.Point(242, 187);
             this.textBox_FilterPhoneNum.Name = "textBox_FilterPhoneNum";
-            this.textBox_FilterPhoneNum.Size = new System.Drawing.Size(377, 31);
+            this.textBox_FilterPhoneNum.Size = new System.Drawing.Size(377, 35);
             this.textBox_FilterPhoneNum.TabIndex = 3;
             this.textBox_FilterPhoneNum.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Filter_KeyUp);
             // 
@@ -295,10 +304,10 @@
             // 
             this.textBoxFirstName.BackColor = System.Drawing.Color.White;
             this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.textBoxFirstName.Location = new System.Drawing.Point(190, 126);
+            this.textBoxFirstName.Location = new System.Drawing.Point(190, 120);
             this.textBoxFirstName.Multiline = true;
             this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(342, 44);
+            this.textBoxFirstName.Size = new System.Drawing.Size(341, 34);
             this.textBoxFirstName.TabIndex = 1;
             this.textBoxFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_Let_KeyPress);
             this.textBoxFirstName.Leave += new System.EventHandler(this.textBox_Name_Leave);
@@ -320,7 +329,7 @@
             this.comboBox_city.Location = new System.Drawing.Point(108, 505);
             this.comboBox_city.Name = "comboBox_city";
             this.comboBox_city.Size = new System.Drawing.Size(230, 39);
-            this.comboBox_city.TabIndex = 19;
+            this.comboBox_city.TabIndex = 7;
             // 
             // button_add_city
             // 
@@ -337,7 +346,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1945, 942);
+            this.ClientSize = new System.Drawing.Size(1848, 850);
             this.Controls.Add(this.button_add_city);
             this.Controls.Add(this.comboBox_city);
             this.Controls.Add(this.label_city);

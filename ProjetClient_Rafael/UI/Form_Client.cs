@@ -313,16 +313,21 @@ namespace ProjetClient_Rafael.UI
 
         public void CityArrToForm(City curCity = null)
         {
-            if (curCity != null)
-                comboBox_city.SelectedValue = curCity.ID;
-            //ממירה את הטנ "מ אוסף ישובים לטופס
+
+            //ממירה את הטנ"מ אוסף ישובים לטופס
 
             CityArr cityArr = new CityArr();
-            cityArr.Fill();
+            City cityDefault = new City();
+            cityDefault.ID = -1;
+            cityDefault.CityName = "Choice city";
+            cityArr.Add(cityDefault);
 
+            cityArr.Fill();
             comboBox_city.DataSource = cityArr;
-            comboBox_city.ValueMember = "Id";
+            comboBox_city.ValueMember = "ID";
             comboBox_city.DisplayMember = "CityName";
+            if (curCity != null)
+                comboBox_city.SelectedValue = curCity.ID;
         }
 
         private void button_add_city_Click(object sender, EventArgs e)
@@ -331,6 +336,11 @@ namespace ProjetClient_Rafael.UI
             form_City = new Form_City();
             form_City.ShowDialog();
             CityArrToForm(form_City.SelectedCity);
+        }
+
+        private void textBoxAge_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
